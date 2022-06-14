@@ -1,0 +1,29 @@
+Encapsulation vs Abstraction
+
+Encapsulation basically means to encapsulate (wrap up) data under a single unit. That means binding together the code and the data that it manipulates.
+
+This means that the data (aka variables) of a class are hidden from another class and can only be accessed through member functions i.e. getters & setters (public methods for private members).
+
+In Java for example you would declare members private while in Golang you would make struct fields unexported type (beginning with small case letter).
+
+PTP: Encapsulation usually would mean to group together similar data/code/functionality into a single class and also keep it private i.e. accessible within that class and permit access & modifications through public (exported) methods.
+
+Abstraction, on the other hand, is the property by virtue of which only the essential details are displayed to the user. The trivial or the non-essentials units are not displayed to the user.
+
+This can be achieved via abstract classes and interfaces. We need to identify the details and functionality that we want to be concrete and provide implementation for while also recognizing some abstract details that are open to implementation based on sub-classes/child-classes.
+
+`The bigger the interface, the weaker the abstraction.` What does that mean? Basically, smaller interfaces allow you to build components that share them.
+
+If an interface is too big, with too much behaviour, it might not be common for structs to implement it. A smaller interface in contrast can be shared between components which the idea behind interface really is.
+
+Also, from Java perspective, interfaces are used to achieve total abstarction while astract classes are used to achieve maybe 10%-100% abstraction.
+
+````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+
+Comparison
+
+In abstraction, problems are solved at the design or interface level.	While in encapsulation, problems are solved at the implementation level.
+
+We can implement abstraction using abstract class and interfaces.	Whereas encapsulation can be implemented using by access modifier i.e. private, protected and public.
+
+Abstraction is the method of hiding the unwanted information.	Whereas encapsulation is a method to hide the data in a single entity or unit along with a method to protect information from outside.
