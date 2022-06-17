@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 )
 
 // Problem Statement
@@ -71,6 +73,38 @@ func plusOne(digits []int) []int {
 	}
 
 	return digits
+}
+
+func plusOneNew(digits []int) []int {
+	stringForm := make([]string, 0)
+
+	for _, val := range digits {
+		stringForm = append(stringForm, strconv.Itoa(val))
+	}
+
+	stringVal := strings.Join(stringForm, "")
+
+	intForm, err := strconv.Atoi(stringVal)
+	if err != nil {
+		panic(err)
+	}
+
+	intForm = intForm + 1
+
+	newString := strconv.Itoa(intForm)
+
+	newIntArray := make([]int, 0)
+
+	for _, val := range newString {
+		intVal, err := strconv.Atoi(string(val))
+		if err != nil {
+			panic(err)
+		}
+
+		newIntArray = append(newIntArray, intVal)
+	}
+
+	return newIntArray
 }
 
 // Challenge:

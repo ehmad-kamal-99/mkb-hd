@@ -11,7 +11,8 @@ import (
 /*
 Notes
 
-
+Basically divide and conquer, if that's what it means.
+Start with the middle index, drop the irrelevant.
 
 */
 
@@ -75,6 +76,33 @@ func searchInsertPosition(nums []int, target int) int {
 //
 // 	return left
 // }
+
+func searchInsertPositionLogN(nums []int, target int) int {
+	if len(nums) == 1 {
+		if nums[0] >= target {
+			return 0
+		}
+
+		return 1
+	}
+
+	left := 0
+	right := len(nums) - 1
+
+	for left <= right {
+		mid := (left + right) / 2
+
+		if nums[mid] == target {
+			return mid
+		} else if nums[mid] < target {
+			left = mid + 1
+		} else {
+			right = mid - 1
+		}
+	}
+
+	return left
+}
 
 // func sliceArray(nums []int) []int {
 //
