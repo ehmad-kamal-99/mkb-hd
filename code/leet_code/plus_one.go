@@ -14,7 +14,7 @@ import (
 Notes
 
 I mean, pick the last one, update it & return the same array? No, what if the last int is 9, then you need to carry one and update the next int.
-Add a check if array size is 1.
+Append a check if array size is 1.
 If array size equals 2, check the last int, if its 9, update it 0 and check the next int.
 If that is 9 too, update that to zero until the array is empty.
 Recursion? Let's avoid that.
