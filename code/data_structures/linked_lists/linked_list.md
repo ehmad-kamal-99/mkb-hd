@@ -8,8 +8,8 @@
   - In the Middle (Based on order)
   - Based on Given Position
 - Get Node
-  - Based on Position
-  - Based on Value (Data)
+  - Value Based on Position
+  - Position Based on Value 
 - Delete Node
   - Based on Position
   - Based on Value (Data)
@@ -18,3 +18,4 @@
 - Search Node
   - Based on Value
 - Print Linked List
+- Sort
