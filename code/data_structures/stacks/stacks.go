@@ -4,6 +4,9 @@ import (
 	"fmt"
 )
 
+// Use stack struct with pointer to top + size defined.
+// Also, try some infix/prefix/postfix problems.
+
 type Stack []int
 
 func NewStack() *Stack {

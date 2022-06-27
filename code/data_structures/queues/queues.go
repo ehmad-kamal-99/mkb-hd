@@ -4,6 +4,9 @@ import (
 	"fmt"
 )
 
+// Update queue to use size & front/rear pointers.
+// Also, check if implementation of circular/priority/double-ended queue can be done.
+
 type Queue []int
 
 func newQueue() *Queue {
