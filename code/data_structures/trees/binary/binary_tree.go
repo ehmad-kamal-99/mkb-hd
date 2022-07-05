@@ -1,4 +1,8 @@
-package binary
+package main
+
+import (
+	"fmt"
+)
 
 /*
 
@@ -46,7 +50,52 @@ Basic Operations on Binary Tree
 Auxiliary Ops
 
 1- Find Height of Tree
-1- Find Level of Tree
-1- Find Size of Tree
+2- Find Level of Tree
+3- Find Size of Tree
 
 */
+
+func levelOrderTraversalQueue(root *node) {
+	queue := make([]*node, 0)
+
+	nodePtr := root
+
+	for nodePtr != nil {
+		fmt.Print(nodePtr.data)
+
+		queue = append(queue, nodePtr.lChild)
+		queue = append(queue, nodePtr.rChild)
+
+		nodePtr = queue[0]
+		queue = queue[1:]
+	}
+
+	fmt.Println()
+}
+
+func heightRecursive(root *node) int {
+	if root == nil {
+		return 0
+	} else {
+		lHeight := heightRecursive(root.lChild)
+		rHeight := heightRecursive(root.rChild)
+
+		if lHeight > rHeight {
+			return lHeight + 1
+		}
+
+		return rHeight + 1
+	}
+}
+
+func main() {
+	tree := newBinaryTree(1)
+	tree.lChild = newBinaryTree(2)
+	tree.rChild = newBinaryTree(3)
+	tree.lChild.lChild = newBinaryTree(4)
+	tree.lChild.rChild = newBinaryTree(5)
+
+	// fmt.Println(heightRecursive(tree))
+
+	levelOrderTraversalQueue(tree)
+}
