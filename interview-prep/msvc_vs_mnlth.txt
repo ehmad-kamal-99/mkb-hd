@@ -1,0 +1,46 @@
+Microservices Architecture
+Benefits:
+    - Testing
+    - Maintainability
+    - Deployment
+- PROS
+    - Highly maintainable and testable
+    - Loosely coupled
+    - Independently deployable
+    - Organized around business capabilities
+    - Owned by a small team
+- CONS
+    - Inter-service communication and partial failure (How is it done and how to tackle it)
+    - Request spanning multiple services is difficult (How is it done???)
+    - Testing becomes difficult (How?)
+    - Deployment becomes difficult because too many services (Really??)
+
+
+Monolithic Architecture: Start with monolith. Either peel of services from the edges or break down that monolith slowly.
+To break down monolith, your approach should have been modular from the beginning. If the Code, API, Data is already
+modular, switching to microservices is not that difficult. But achieving this modularity is also tricky.
+
+What can drive us to microservice? What makes monolith complex to handle?
+1- Dealing with large team. Singular team that grows and communication becomes difficult. [40 devs working on same code base]
+2- Multi-Tenancy. In Single-Tenancy, each customer runs on their copy of the system, with their own copies of the processes.
+Most products, when moving from a traditional download model to a SAAS product offering, end up going with some flavor
+of multi-tenancy setup. The reason is efficiency. You can support more customers on fewer nodes, and fewer nodes means
+reduced cost. A single client setup might require lower-powered machines, but with more customers, you can provision
+higher-powered machines, which tend on the whole to provide more resources (CPU, Memory, IO) per $. A fully multi-tenant
+setup is more amenable to a microservice architecture than a single-tenant setup as the operational maintenance overhead
+doesn't scale linearly with customers. But they also allow you to scale individual parts of the system independently,
+allowing for a more cost-effective scaling too.
+
+[
+Summarizing point 2
+If you have single-tenant system, whether it's a monolith or a microservice, you incur the same cost. Operational
+maintenance scales linearly with customers.
+
+In case of multi-tenancy,
+]
+
+
+To start with microservice first, you need one thing sorted. Established Boundaries. You can determine these boundaries
+by building a monolith first. Also, YAGNI helps us determine how helpful this new service would be. It's a great written
+code but the product is not successful vs it's a bad written code vs a successful product. With monolith, prioritize
+speed, gather feedback.

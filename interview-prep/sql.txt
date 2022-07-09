@@ -1,0 +1,14 @@
+Important Concepts of SQL Databases.
+
+- Relationships in Databases (o-o, o-m, m-m)
+- Normalizations and its types. (1nf, 2nf, 3nf)
+- Joins, types of joins, why and when to use them. (self, equi, inner, outer)
+- Design a databased model for a scenario. (How about hierarchical data).
+- Indexing in databases. How is it done. When can you benefit from it. What are the costs?
+- Remember DDL (create tables/databases), DML (modify data i.e. crud), DCL (manager control access to databases)
+- ACID properties.
+- Types of constraints.
+- Stored Procedures and its advantages plus triggers.
+- Database Replica Sets vs Sharding.
+- Clustered vs Non-Clustered Index. Types of indexes and when to use which?
+- SQL vs PL/SQL. (Oracles Procedural Language to write a full program (loops, variables) to accomplish multiple cruds)

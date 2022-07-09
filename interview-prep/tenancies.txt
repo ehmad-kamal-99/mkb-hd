@@ -1,0 +1,5 @@
+Single Tenancy: Each customer gets their own copy of the software. Maintain it for them or train a team for them to
+maintain it themselves.
+
+Multi-Tenancy: Singular copy of the system that you hold while every customer uses/utilizes it for their business
+use-case.

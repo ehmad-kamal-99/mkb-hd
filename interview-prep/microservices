@@ -1,0 +1,24 @@
+Microservices Architecture
+Benefits:
+- Testing
+- Maintainability
+- Deployment
+
+
+- PROS
+- Highly maintainable and testable
+- Loosely coupled
+- Independently deployable
+- Organized around business capabilities
+- Owned by a small team
+
+
+- CONS
+- Inter-service communication and partial failure (How is it done and how to tackle it)
+- Request spanning multiple services is difficult (How is it done???)
+- Testing becomes difficult (How?)
+- Deployment becomes difficult because too many services (Really??)
+- When you use microservices you have to work on automated deployment, monitoring, dealing with failure,
+eventual consistency, and other factors that a distributed system introduces.
+
+Microservice with Shared Database versus separate database.

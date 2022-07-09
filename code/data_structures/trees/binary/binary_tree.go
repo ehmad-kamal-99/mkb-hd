@@ -39,13 +39,24 @@ func newBinaryTree(data int) *node {
 
 Basic Operations on Binary Tree
 
+			1
+		  /	  \
+	  	 2	   3
+	    /  \  /  \
+       4    5 6	  7
+           / \     \
+		  8   9     10
+				   /
+				 11
+
 1- Insert an element (In level order [first available position])
 2- Remove an element (Replace with deepest right-most node)
 3- Search for an element
-4- Traversing an element
-	a- PreOrder Traversal [root, left, right]
+4- Depth-First Traversal
+	a- PreOrder Traversal [root, left, right] (Done)
 	b- InOrder Traversal [left, root, right]
 	c- PostOrder Traversal [left, right, root]
+5- Breadth-First Traversal [Level Order Traversal] (Done)
 
 Auxiliary Ops
 
@@ -55,6 +66,7 @@ Auxiliary Ops
 
 */
 
+// levelOrderTraversalQueue - breadth-first traversal using queue.
 func levelOrderTraversalQueue(root *node) {
 	queue := make([]*node, 0)
 
@@ -63,13 +75,81 @@ func levelOrderTraversalQueue(root *node) {
 	for nodePtr != nil {
 		fmt.Print(nodePtr.data)
 
-		queue = append(queue, nodePtr.lChild)
-		queue = append(queue, nodePtr.rChild)
+		if nodePtr.lChild != nil {
+			queue = append(queue, nodePtr.lChild)
+		}
+
+		if nodePtr.rChild != nil {
+			queue = append(queue, nodePtr.rChild)
+		}
+
+		if len(queue) == 0 {
+			break
+		}
 
 		nodePtr = queue[0]
 		queue = queue[1:]
 	}
 
+	fmt.Println()
+}
+
+func preOrderTraversal(root *node) {
+	stack := make([]*node, 0)
+
+	nodePtr := root
+
+	for nodePtr != nil {
+		fmt.Print(nodePtr.data)
+
+		if nodePtr.rChild != nil {
+			stack = append(stack, nodePtr.rChild)
+		}
+
+		if nodePtr.lChild != nil {
+			stack = append(stack, nodePtr.lChild)
+		}
+
+		if len(stack) == 0 {
+			break
+		}
+
+		nodePtr = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+	}
+
+	fmt.Println()
+}
+
+func postOrderTraversal(root *node) {
+	stack := make([]*node, 0)
+
+	nodePtr := root
+
+	for nodePtr != nil {
+		if nodePtr.lChild != nil {
+			stack = append(stack, nodePtr.lChild)
+		}
+
+		if nodePtr.rChild != nil {
+			stack = append(stack, nodePtr.rChild)
+		}
+
+		if len(stack) == 0 {
+			break
+		}
+
+		nodePtr = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+	}
+
+	fmt.Println()
+}
+
+func printStack(stack []*node) {
+	for _, node := range stack {
+		fmt.Print(node, " ")
+	}
 	fmt.Println()
 }
 
@@ -94,8 +174,16 @@ func main() {
 	tree.rChild = newBinaryTree(3)
 	tree.lChild.lChild = newBinaryTree(4)
 	tree.lChild.rChild = newBinaryTree(5)
+	tree.rChild.lChild = newBinaryTree(6)
+	tree.rChild.rChild = newBinaryTree(7)
+	tree.lChild.rChild.lChild = newBinaryTree(8)
+	tree.lChild.rChild.rChild = newBinaryTree(9)
+	tree.rChild.rChild.rChild = newBinaryTree(10)
+	tree.rChild.rChild.rChild.lChild = newBinaryTree(11)
 
 	// fmt.Println(heightRecursive(tree))
 
 	levelOrderTraversalQueue(tree)
+	preOrderTraversal(tree)
+	postOrderTraversal(tree)
 }
