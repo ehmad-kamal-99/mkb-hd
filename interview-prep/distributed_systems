@@ -16,3 +16,8 @@ Asynchronous
 
 When you use microservices you have to work on automated deployment, monitoring, dealing with failure,
 eventual consistency, and other factors that a distributed system introduces.
+
+Fallacies:
+1- Zero network latency
+2- Network is reliable and secure
+3- Infinite Bandwidth

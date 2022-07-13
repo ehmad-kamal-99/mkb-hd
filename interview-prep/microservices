@@ -1,8 +1,13 @@
 Microservices Architecture
-Benefits:
+
+What is a service? A stand-alone, independently deployable software component.
+
+Benefits of Msvc:
 - Testing
 - Maintainability
 - Deployment
+- Small, frequent releases with less risk and faster delivery.
+- Avoids single point of failure.
 
 
 - PROS
@@ -15,10 +20,64 @@ Benefits:
 
 - CONS
 - Inter-service communication and partial failure (How is it done and how to tackle it)
-- Request spanning multiple services is difficult (How is it done???)
+- Request spanning multiple services is difficult (How is it done???) [Could be synchronous vs asynchronous calls] [asynchronous better cause it removes dependency [consider two sync vs async calls [second gets blocked]], provides low-coupling, availability]
 - Testing becomes difficult (How?)
 - Deployment becomes difficult because too many services (Really??)
 - When you use microservices you have to work on automated deployment, monitoring, dealing with failure,
 eventual consistency, and other factors that a distributed system introduces.
+
+Microservice Communication Type:
+2 Axis:
+    Based on Protocol:
+        1- Synchronous
+        2- Asynchronous
+            Based on Receivers/Consumers
+                i- Single Receiver [Queues i.e. Kafka]
+                ii- Multiple Receivers [Pub/Sub model used in Event Driven Architecture]
+
+Based on Protocol
+    - Synchronous [HTTP Request / Response: Using resource API's (mostly utilized for querying data).]
+        Use Synchronous when:
+            The operation is a simple query which does not change any state
+            The operation result is needed to move forward in the current process
+            The operation can fail and does not require a complex retry mechanism
+            The operations takes less-time (time-critical)
+
+    - Asynchronous [Asynchronous Messaging: For communicating updates across multiple microservices.]
+        Use Asynchronous when:
+            The operation involves multiple services reacting to it
+            The operation must be performed while allowing failures & retries
+            The operation takes a lot of time
+
+        - Two major ways to implement async communication:
+        1- Queues : Seems suitable for consumption of events by a single target.
+                    Multiple services generating sendEmail event. Tools: RabbitMQ, AWS SQS ...
+                    Patterns based on Queue:
+                        1- CQRS
+                        2- Pipe/Filter
+        2- Logs : Seems suitable for consumption of events by a multiple target.
+                  Order placed, update inventory, send email, notify logistics etc. Tools: Kafka, Event-Bridge ...
+                  Patterns based on Logs:
+                    1- Event-Driven Architecture
+                    2- Event-Sourcing
+
+
+If possible, never depend on synchronous communication (request/response) between multiple microservices, not even for
+queries. The goal of each microservice is to be autonomous and available to the client consumer, even if the other
+services that are part of the end-to-end application are down or unhealthy. If you think you need to make a call from
+one microservice to other microservices (like performing an HTTP request for a data query) to be able to provide a
+response to a client application, you have an architecture that won't be resilient when some microservices fail.
+
+To deal with chain of requests anti-pattern, instead replicate or propagate that data (only the attributes you need)
+into the initial service's database by using eventual consistency.
+
+``SOA``
+
+Service Oriented Architecture means that you structure your application by decomposing it into multiple services that
+can be classified as different types like subsystems or tiers. Features like large central brokers, central
+orchestrators at the organization level, and the Enterprise Service Bus (ESB) are typical in SOA. But in most cases,
+these are anti-patterns in the microservice community. In fact, some people argue that "The microservice architecture
+is SOA done right."
+
 
 Microservice with Shared Database versus separate database.

@@ -1,3 +1,4 @@
-1- Service Oriented Architecture
-2- Event Sourcing and CQRS
-3- Problems with Distributed Systems.
+1- Event Sourcing and CQRS [Command [writes] Query [reads] Responsibility Segregation [separation]]
+2- Problems with Distributed Systems.
+3- Study Given, When, Then.
+4- Study DDD, pre-req to 1.
