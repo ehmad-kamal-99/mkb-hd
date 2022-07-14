@@ -1,0 +1,10 @@
+Remember
+
+Makefile automation, bash, shell scripting
+
+Study
+
+Study ORM and what that object is.
+Study migrations in database i.e. schema updates, versions.
+Study Ansible Playbook
+Study gRPC

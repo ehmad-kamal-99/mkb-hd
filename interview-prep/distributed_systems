@@ -1,0 +1,23 @@
+Distributed Systems: A collection of independent systems/computers which appears as one to the end user.
+- To call a system distributed, it needs to respect 3 rules:
+    1- Computers operate concurrently.
+    2- Computers fail independently.
+    3- Computers do not share a global clock.
+
+Problem: Upload a large file of 10 GB to your server, read it, normalize the data and persist it into database.
+
+Distributed Transactions (How to handle failures in each)
+Synchronous
+    - 2 Phase Commit
+    - 3 Phase Commit
+Asynchronous
+    - Orchestration-based SAGA pattern.
+    - Choreography-based SAGA pattern.
+
+When you use microservices you have to work on automated deployment, monitoring, dealing with failure,
+eventual consistency, and other factors that a distributed system introduces.
+
+Fallacies:
+1- Zero network latency
+2- Network is reliable and secure
+3- Infinite Bandwidth

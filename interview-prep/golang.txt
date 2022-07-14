@@ -1,0 +1,19 @@
+Always cover your basics, so you are confident
+- Channels (Buffered | Unbuffered) (Why are they used. If communication, can we not use other approaches / variables)
+- Goroutines (Explain & Understand them)
+- Variadic Functions *palm face* (Couldn't remember at that time)
+- Defer statement. When do they get executed.
+- Panic, when to use it, its behavior and how to use it with recover()
+- Arrays vs Slices (Remember value vs pointers) (Modification in arrays are not visible to caller)
+- Interfaces and its usage, implementation.
+- Embedding in structs vs using as a field in struct. Plus what's the difference and this idea called.
+- Objects in Go. I think I got it right.
+
+Pros of Go
+- Simple to understand, verbose.
+- Type safe.
+- Fast compilation
+- Execution Speed
+- Concurrency is first-class citizen
+- Compiles directly to an executable (small and cross-platform)
+- Standard Library provides high-level interfaces.

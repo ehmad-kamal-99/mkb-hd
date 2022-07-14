@@ -1,0 +1,19 @@
+Docker
+- Volume Mounting and how it's done.
+- Dockerfile vs Docker-Compose
+- Types of mounting (there might be multiple types)
+- Networking
+- Multi-Level Builds (Generate build, install tools i.e. golang, ca-certs then use that build using from in another stage/level leaving other stuff behind)
+
+Know that basic resources like
+- Nodes (virtual machine on which pods gets created)
+- Pods (contains application containers or other)
+- Persistent Volume (Volume where data is stored, is mapped to something physical i.e. s3, or nfs etc.)
+- Persistent Volume Claim (used for replica sets, an abstract requirement of what is needed, not physical definition.)
+- Storage Class (dynamic persistent volume creation as opposed to manually creating somewhere and setting ips etc)
+- Config-Maps (store application or db configuration files, available to your pod and can be mapped to container)
+- Secrets (certificates for server or databases, available to your pod and can be mapped to container)
+- emptyDir or tempVolume, directory present on node/machine, sharing its lifespan with pods and used for caching/temp data.
+
+Ansible
+- Automation tool which enables infrastructure as code. Study ansible playbooks.
