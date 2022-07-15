@@ -2,7 +2,7 @@
     Floyd Warshall Algorithm
     Dijkstra’s Algorithm
     Bellman Ford Algorithm
-    Kadane’s Algorithm
+    Kadane’s Algorithm [Find the shortest consecutive array with the biggest sum]
     Lee Algorithm
     Flood Fill Algorithm
     Floyd’s Cycle Detection Algorithm
@@ -12,5 +12,5 @@
     Kahn’s Topological Sort Algorithm
     Huffman Coding Compression Algorithm
     Quickselect Algorithm
-    Boyer–Moore Majority Vote Algorithm
+    Boyer–Moore Majority Vote Algorithm [Find the item in array such that its occurrence > length(array)/2]
     Euclid’s Algorithm

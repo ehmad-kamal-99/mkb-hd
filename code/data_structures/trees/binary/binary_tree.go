@@ -55,7 +55,7 @@ Basic Operations on Binary Tree
 4- Depth-First Traversal
 	a- PreOrder Traversal [root, left, right] (Done)
 	b- InOrder Traversal [left, root, right]
-	c- PostOrder Traversal [left, right, root]
+	c- PostOrder Traversal [left, right, root] (Done)
 5- Breadth-First Traversal [Level Order Traversal] (Done)
 
 Auxiliary Ops
@@ -66,6 +66,7 @@ Auxiliary Ops
 
 */
 
+// Can't be done recursively.
 // levelOrderTraversalQueue - breadth-first traversal using queue.
 func levelOrderTraversalQueue(root *node) {
 	queue := make([]*node, 0)
@@ -121,30 +122,65 @@ func preOrderTraversal(root *node) {
 	fmt.Println()
 }
 
-func postOrderTraversal(root *node) {
-	stack := make([]*node, 0)
-
-	nodePtr := root
-
-	for nodePtr != nil {
-		if nodePtr.lChild != nil {
-			stack = append(stack, nodePtr.lChild)
-		}
-
-		if nodePtr.rChild != nil {
-			stack = append(stack, nodePtr.rChild)
-		}
-
-		if len(stack) == 0 {
-			break
-		}
-
-		nodePtr = stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
+func preOrderTraversalR(root *node) {
+	if root == nil {
+		return
 	}
 
-	fmt.Println()
+	fmt.Print(root.data)
+
+	preOrderTraversalR(root.lChild)
+	preOrderTraversalR(root.rChild)
 }
+
+func inOrderTraversalR(root *node) {
+	if root == nil {
+		return
+	}
+
+	inOrderTraversalR(root.lChild)
+
+	fmt.Print(root.data)
+
+	inOrderTraversalR(root.rChild)
+}
+
+func postOrderTraversalR(root *node) {
+	if root == nil {
+		return
+	}
+
+	postOrderTraversalR(root.lChild)
+
+	postOrderTraversalR(root.rChild)
+
+	fmt.Print(root.data)
+}
+
+//func postOrderTraversal(root *node) {
+//	stack := make([]*node, 0)
+//
+//	nodePtr := root
+//
+//	for nodePtr != nil {
+//		if nodePtr.lChild != nil {
+//			stack = append(stack, nodePtr.lChild)
+//		}
+//
+//		if nodePtr.rChild != nil {
+//			stack = append(stack, nodePtr.rChild)
+//		}
+//
+//		if len(stack) == 0 {
+//			break
+//		}
+//
+//		nodePtr = stack[len(stack)-1]
+//		stack = stack[:len(stack)-1]
+//	}
+//
+//	fmt.Println()
+//}
 
 func printStack(stack []*node) {
 	for _, node := range stack {
@@ -185,5 +221,10 @@ func main() {
 
 	levelOrderTraversalQueue(tree)
 	preOrderTraversal(tree)
-	postOrderTraversal(tree)
+	preOrderTraversalR(tree)
+	fmt.Println()
+	postOrderTraversalR(tree)
+	fmt.Println()
+	inOrderTraversalR(tree)
+	fmt.Println()
 }
