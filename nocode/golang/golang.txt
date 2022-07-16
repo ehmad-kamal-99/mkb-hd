@@ -2,7 +2,7 @@ Always cover your basics, so you are confident
 - Channels (Buffered | Unbuffered) (Why are they used. If communication, can we not use other approaches / variables)
 - Goroutines (Explain & Understand them)
 - Variadic Functions *palm face* (Couldn't remember at that time)
-- Defer statement. When do they get executed.
+- Defer statement. When do they get executed [After the function returns].
 - Panic, when to use it, its behavior and how to use it with recover()
 - Arrays vs Slices (Remember value vs pointers) (Modification in arrays are not visible to caller)
 - Interfaces and its usage, implementation.
