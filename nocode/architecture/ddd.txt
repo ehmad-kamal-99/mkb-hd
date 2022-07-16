@@ -3,3 +3,8 @@ Domain Driven Design
 Bounded Context is a central pattern in Domain-Driven Design. BC comes up in strategic design section which is all about
 dealing with large models and teams. DDD divides large models into different BC and explicitly states their
 interrelationship.
+
+- Ubiquitous Language
+- Entities
+- Aggregates
+- Bounded Context

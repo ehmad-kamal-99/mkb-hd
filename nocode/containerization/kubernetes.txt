@@ -1,4 +1,4 @@
-Docker
+Docker (Overlay FS)
 - Volume Mounting and how it's done.
 - Dockerfile vs Docker-Compose
 - Types of mounting (there might be multiple types)
@@ -14,6 +14,3 @@ Know that basic resources like
 - Config-Maps (store application or db configuration files, available to your pod and can be mapped to container)
 - Secrets (certificates for server or databases, available to your pod and can be mapped to container)
 - emptyDir or tempVolume, directory present on node/machine, sharing its lifespan with pods and used for caching/temp data.
-
-Ansible
-- Automation tool which enables infrastructure as code. Study ansible playbooks.

@@ -19,6 +19,3 @@
     - Client-Server: In REST APIs, the client and server are two separate entities. Concerns about the API interface are separate from concerns about how the underlying data is stored and retrieved.
     - Stateless: REST requests must be stateless; the server does not have to remember any details about the client’s state. This means that the client must include all necessary information within each API request it makes.
     - Code on Demand: The client can optionally download code such as a JavaScript script or Java applet in order to extend its functionality at runtime.
-
-
-Study gRPC!!!
