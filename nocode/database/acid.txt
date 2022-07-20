@@ -1,0 +1,59 @@
+Transaction: A collection of queries that is treated as one unit of work.
+- Transaction Lifespan: BEGIN, COMMIT, ROLLBACK
+- You can have read only transactions too for consistent data.
+
+Atomicity: Ensures that all queries in a transaction should complete successfully. If one query fails, all successful
+queries should be rolled back.
+
+Isolation: Determines the visibility of changes between concurrent transactions.
+- Dirty Read: T1 reads certain data, then perform action (another aggregate query) on that dataset but before the action
+is performed, another transaction T2 modifies the data so T1 returns result/value that is inconsistent. This
+result/value is a dirty read. T2 didn't commit the changes before T1 read it.
+
+- Non-Repeatable Read: Similar to dirty read except, T2 committed data before T1's second operation leading to similar
+outcome.
+
+- Phantom Read: Happens mostly in unbound query (no specific range specified). Assume T1 performed select query and then
+tried aggregate query on those rows but during the second query got executed, a new transaction T2 inserted a new row
+and committed that resulting in a row showing up in T1, which didn't exist during initial query.
+
+- Lost Updates: Happens mostly when two concurrent update queries leads to inconsistent result. Assume T1 read quantity
+of product X while T2 also read quantity of product X (assume it to be 0). Then T1 set the quantity to 0 + 10 = 10 but
+T2 overwrote that, to set it to 0 + 5 = 5. After completion of both transactions, the value should have been 15 but we
+ended up with 5 hence one of our updates was lost.
+
+Isolation Levels for Inflight Transactions
+
+- Read Uncommitted: No isolation. Any change from outside is visible to the transaction.
+- Read Committed: Each query in a transaction only sees committed changes by other transactions.
+- Repeatable Read - The transaction will make sure that when a query reads a row, that row will remain unchanged while
+its running (usually done by acquiring lock on the rows).
+- Snapshot - Each query in a transaction only sees changes that have been committed up to the start of the transaction.
+It's like a snapshot version of the database at that moment.
+- Serializable - Transactions are run as if they serialized one after the other (kind of sequential).
+
+Each DBMS implements Isolation Level Differently
+
+- Pessimistic - Row level locks, table locks, page locks to avoid lost updates.
+- Optimistic - No locks, just track if things changed and fail the transaction if so.
+- Repeatable read “locks” the rows it reads, but it could be expensive if you read a lot of rows, postgres implements
+RR as snapshot. That is why you don’t get phantom reads with postgres in repeatable read.
+- Serializable are usually implemented with optimistic concurrency control, you can implement it pessimistically with
+SELECT FOR UPDATE.
+
+Consistency: Data in database is consistent. Two types:
+
+- Consistency in Data: Defined and maintained by user i.e. if a picture gets a like, we need to update two tables
+pictures and picture_likes to maintain consistency.
+
+- Consistency in Reads: If a transaction updates a record, will the second transaction be able to read that
+change/update? What if we had databases sharded or replica sets? We will reach eventual consistency in this case.
+
+Durability: Changes made by committed transactions must be persisted in a durable non-volatile storage i.e. if a commit
+happened and database went down, we should see that change after the database restarts.
+
+Techniques:
+WAL (Write Ahead Logs): Writing a lot of data to disk is expensive (indexes, data files, columns, rows, etc..). That is
+why DBMSs persist a compressed version of the changes known as WAL (write-ahead-log segments). A write request in OS
+usually goes to the OS cache. When the writes go the OS cache, an OS crash, machine restart could lead to loss of data
+Fsync OS command forces writes to always go to disk. fsync can be expensive and slows down commits.

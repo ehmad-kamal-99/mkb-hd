@@ -41,7 +41,7 @@ Summarizing point 2
 If you have single-tenant system, whether it's a monolith or a microservice, you incur the same cost. Operational
 maintenance scales linearly with customers.
 
-In case of multi-tenancy, scaling individual service/module is not possible.
+In case of multi-tenancy, scaling individual service/module is not possible if it's a monolith.
 Most products, when moving from a traditional download model to a SAAS product offering, end up going with some flavor
 of multi-tenancy setup. The reason is efficiency. You can support more customers on fewer nodes, and fewer nodes means
 reduced cost. A single client setup might require lower-powered machines, but with more customers, you can provision
