@@ -5,55 +5,55 @@ import (
 )
 
 /*
-Best case = O(N)
+Normal Bubble Sort
 
-[1,2,3]
+[1, 2, 3, 4, 6, 5]
 
-i = 1
-j = 2
+[1, 2, 3, 4, 6, 5]
+ ^  ^
 
-compare, already in place
+[1, 2, 3, 4, 6, 5]
+ ^     ^
 
-i = 1
-j = 3
+[1, 2, 3, 4, 6, 5]
+ ^        ^
 
-compare, already in place
+Improved Bubble Sort
 
-i = 2
-j = 3
+[1, 2, 3, 4, 6, 5]
 
-compare, already in place
+[1, 2, 3, 4, 6, 5]
+ ^  ^
 
-finish
+[1, 2, 3, 4, 6, 5]
+    ^  ^
 
-[1, 3, 2]
+[1, 2, 3, 4, 6, 5]
+       ^  ^
 
-i = 1
-j = 3
+[1, 2, 3, 4, 6, 5]
+          ^  ^
 
-compare, already in place
+[1, 2, 3, 4, 6, 5]
+             ^  ^
 
-i = 1
-j = 2
+[1, 2, 3, 4, 6, 5]
+ ^  ^
 
-compare, already in place
-
-i = 3
-j = 2
-
-swap
-
-finish
 */
 
 func main() {
 	test := []int{1, 2, 3, 0, 0, 0, 2, 5, 6}
+	test2 := []int{9, 8, 7, 6, 5, 4, 3, 2, 1}
 	BubbleSort(test)
 	fmt.Println(test)
+	BubbleSortImproved(test)
+	fmt.Println(test)
+	BubbleSortImproved(test2)
+	fmt.Println(test2)
 }
 
 func BubbleSort(nums []int) {
-	// TODO: Fix me. In best case, it will still give O(n^2). Update the algorithm so if there are no swaps, exit.
 	for i := 0; i < len(nums)-1; i++ {
 		for j := i + 1; j < len(nums); j++ {
 			if nums[j] < nums[i] {
@@ -61,6 +61,28 @@ func BubbleSort(nums []int) {
 				nums[j] = nums[i]
 				nums[i] = tmp
 			}
+		}
+	}
+}
+
+func BubbleSortImproved(nums []int) {
+	for {
+		swap := false
+		i := 0
+		j := i + 1
+
+		for j < len(nums) {
+			if nums[i] > nums[j] {
+				nums[j], nums[i] = nums[i], nums[j]
+				swap = true
+			}
+
+			i++
+			j++
+		}
+
+		if !swap {
+			break
 		}
 	}
 }
