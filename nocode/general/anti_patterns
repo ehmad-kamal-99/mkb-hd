@@ -2,9 +2,12 @@ Anti Patterns
 
 Anti-patterns are certain patterns in software development that are considered bad programming practices.
 
-As opposed to design patterns which are common approaches to common problems which have been formalized and are generally considered a good development practice, anti-patterns are the opposite and are undesirable.
+As opposed to design patterns which are common approaches to common problems which have been formalized and are
+generally considered a good development practice, anti-patterns are the opposite and are undesirable.
 
-For example, in object-oriented programming, the idea is to separate the software into small pieces called objects. An anti-pattern in object-oriented programming is a God object which performs a lot of functions which would be better separated into different objects.
+For example, in object-oriented programming, the idea is to separate the software into small pieces called objects.
+An anti-pattern in object-oriented programming is a God object which performs a lot of functions which would be better
+separated into different objects.
 
 For example:
 
@@ -18,7 +21,8 @@ class GodObject {
     // and so on... //
 }
 
-The example above has an object that does everything. In object-oriented programming, it would be preferable to have well-defined responsibilities for different objects to keep the code less coupled and ultimately more maintainable:
+The example above has an object that does everything. In object-oriented programming, it would be preferable to have
+well-defined responsibilities for different objects to keep the code less coupled and ultimately more maintainable:
 
 class FileInputOutput {
     function ReadFromFile() {}
@@ -35,51 +39,70 @@ class Logic {
     function PerformCalculation() {}
 }
 
-The bottom line is there are good ways to develop software with commonly used patterns (design patterns), but there are also ways software is developed and implemented which can lead to problems. Patterns that are considered bad software development practices are anti-patterns.
+The bottom line is there are good ways to develop software with commonly used patterns (design patterns), but there are
+also ways software is developed and implemented which can lead to problems. Patterns that are considered bad software
+development practices are anti-patterns.
 
 ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
-An anti-pattern is a way of not solving a problem. But there is more to it: it is also a way that can frequently be seen in attempts to solve the problem.
+An anti-pattern is a way of not solving a problem. But there is more to it: it is also a way that can frequently be
+seen in attempts to solve the problem.
 
 ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
-A pattern is an idea of how to solve a problem of some class. An anti-pattern is an idea of how not to solve it because implementing that idea would result in bad design.
+A pattern is an idea of how to solve a problem of some class. An anti-pattern is an idea of how not to solve it because
+implementing that idea would result in bad design.
 
-An example: a "pattern" would be to use a function for code reuse, an "anti-pattern" would be to use copy-paste for the same. Both solve the same problem, but using a function usually leads to more readable and maintainable code than copy-paste.
+An example: a "pattern" would be to use a function for code reuse, an "anti-pattern" would be to use copy-paste for the
+same. Both solve the same problem, but using a function usually leads to more readable and maintainable code than
+copy-paste.
 
 ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 If you really wish to study AntiPatterns, get the book AntiPatterns (ISBN-13: 978-0471197133).
 
-In it, they define "An AntiPattern is a literary form that describes a commonly occurring solution to a problem that generates decidedly negative consequences."
+In it, they define "An AntiPattern is a literary form that describes a commonly occurring solution to a problem that
+generates decidedly negative consequences."
 
-So, if it's a bad programming practice but not a common one— very limited in frequency of occurrence, it does not meet the "Pattern" part of the AntiPattern definition.
-
-``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
-
-Just like with a design pattern, an anti-pattern is also a template and a repeatable way of solving a certain problem, but in a non-optimal and ineffective way.
+So, if it's a bad programming practice but not a common one — very limited in frequency of occurrence, it does not meet
+the "Pattern" part of the AntiPattern definition.
 
 ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
-Interestingly a given way of solving a problem can be both a pattern and an anti-pattern. Singleton is the prime example of this. It will appear in both sets of literature.
+Just like with a design pattern, an anti-pattern is also a template and a repeatable way of solving a certain problem,
+but in a non-optimal and ineffective way.
+
+``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+
+Interestingly a given way of solving a problem can be both a pattern and an anti-pattern. Singleton is the prime example
+of this. It will appear in both sets of literature.
 
 ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 In Microservices based area:
 
-Everything is micro except for data is an anti-pattern. It means that if every thing is decomposed reasonable and fully based on DevOps and CI/CD. Maybe some distributed design patterns are in place and even fully replicated, but there is one giant data store behind all of the services, so it is still a monolithic data structure.
+Everything is micro except for data is an anti-pattern. It means that if every thing is decomposed reasonable and fully
+based on DevOps and CI/CD. Maybe some distributed design patterns are in place and even fully replicated, but there is
+one giant data store behind all of the services, so it is still a monolithic data structure.
 
 ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
-Actually, anti-patterns generally are not obvious. Obviously bad design patterns are simply bad design patterns. A genuine anti-pattern looks tenable on the surface, but manifests problems later on. In fact, not being obviously bad is the distinction that makes them an anti-pattern in the first place.
+Actually, anti-patterns generally are not obvious. Obviously bad design patterns are simply bad design patterns. A
+genuine anti-pattern looks tenable on the surface, but manifests problems later on. In fact, not being obviously bad is
+the distinction that makes them an anti-pattern in the first place.
 
 ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
-Today, software engineering researchers and practitioners often use the terms “anti-pattern” and “smell” interchangeably. However, they are conceptually not the same. The Wikipedia entry of anti-pattern states that an anti-pattern is different from a bad practice or a bad idea by at least two factors. An anti-pattern is
+Today, software engineering researchers and practitioners often use the terms “anti-pattern” and “smell”
+interchangeably. However, they are conceptually not the same. The Wikipedia entry of anti-pattern states that an
+anti-pattern is different from a bad practice or a bad idea by at least two factors. An anti-pattern is
 
-"A commonly used process, structure or pattern of action that despite initially appearing to be an appropriate and effective response to a problem, typically has more bad consequences than beneficial results.”
+"A commonly used process, structure or pattern of action that despite initially appearing to be an appropriate and
+effective response to a problem, typically has more bad consequences than beneficial results.”
 
-It clearly indicates that an anti-pattern is chosen in the belief that it is a good solution (as a pattern) to the presented problem; however, it brings more liabilities than benefits. On the other hand, a smell is simply a bad practice that negatively affects the quality of a software system. For example, Singleton is an anti-pattern and God class (or Insufficient Modularization) is a design smell.
+It clearly indicates that an anti-pattern is chosen in the belief that it is a good solution (as a pattern) to the
+presented problem; however, it brings more liabilities than benefits. On the other hand, a smell is simply a bad
+practice that negatively affects the quality of a software system. For example, Singleton is an anti-pattern and God
+class (or Insufficient Modularization) is a design smell.
 
 ``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
-

@@ -2,32 +2,48 @@ Mono Repo vs Poly Repo
 
 Imports (50/50)
 
-It depends heavily on the language. Even if the language requires a package repository in the middle when referencing code across source repositories, it still seems like polyrepos are more popular. When using a monorepo layout, it’s often preferable to create distinct modules of each project and some communities have developed tools to help with that.
+It depends heavily on the language. Even if the language requires a package repository in the middle when referencing
+code across source repositories, it still seems like poly-repos are more popular. When using a monorepo layout, it’s
+often preferable to create distinct modules of each project and some communities have developed tools to help with that.
 
 Contribution With-in Same Project (Poly)
 
-Managing contributions within the same project is easier with a polyrepo layout, as it is easier to track the history of changes per-repository rather than per-directory.
+Managing contributions within the same project is easier with a poly-repo layout, as it is easier to track the history
+of changes per-repository rather than per-directory.
 
 Contribution Across Projects (Mono)
 
-Managing contributions across projects is usually easier in a monorepo layout, as PRs can make changes across several components at the same time and there is no need to constantly update the referenced version of dependencies. In addition, integration breakages are obvious immediately.
+Managing contributions across projects is usually easier in a monorepo layout, as PRs can make changes across several
+components at the same time and there is no need to constantly update the referenced version of dependencies. In
+addition, integration breakages are obvious immediately.
 
 Releases (Poly)
 
-Multiple factors can influence your decision here: team layout, release frequency requirements, MTTR requirements, level of cohesion of separate projects, and so on. Generally, polyrepos have the added benefit that the better engineering process decisions fall in place more naturally. In addition, the collection of tags usually make more sense for polyrepos.
+Multiple factors can influence your decision here: team layout, release frequency requirements, MTTR requirements,
+level of cohesion of separate projects, and so on. Generally, poly-repos have the added benefit that the better
+engineering process decisions fall in place more naturally. In addition, the collection of tags usually make more sense
+for poly-repos.
 
 Builds & CI 50/50
 
-If you are a very large organization, systems like Bazel and others can offer a platform for very advanced build features in a monorepo setup - assuming that the entire engineering team adopts it. Small and medium organizations, or large organizations with fragmented builds generally benefit from polyrepo setups more, due to the existing build ecosystem available as open-source or commercial-off-the-shelf (COTS). Hybrid setups could also be used as a compromise, assuming the monorepo(s) are not too large to require special build considerations.
+If you are a very large organization, systems like Bazel and others can offer a platform for very advanced build
+features in a monorepo setup - assuming that the entire engineering team adopts it. Small and medium organizations,
+or large organizations with fragmented builds generally benefit from polyrepo setups more, due to the existing build
+ecosystem available as open-source or commercial-off-the-shelf (COTS). Hybrid setups could also be used as a compromise,
+assuming the monorepo(s) are not too large to require special build considerations.
 
 Code Ownership 50/50
 
-It depends. If you would like to leave control of the engineering process enforcement to the individual teams, then polyrepo gives the most granular permission flexibility. If, on the other hand, you would like to enforce certain rules for everyone, a monorepo setup makes that the easiest.
+It depends. If you would like to leave control of the engineering process enforcement to the individual teams, then
+polyrepo gives the most granular permission flexibility. If, on the other hand, you would like to enforce certain
+rules for everyone, a monorepo setup makes that the easiest.
 
 Issue Tracking 50/50
 
-For medium and large organizations, monorepo issue tracking does not scale well. For small organizations, monorepo issue tracking helps the team coordinate better.
+For medium and large organizations, monorepo issue tracking does not scale well. For small organizations, monorepo
+issue tracking helps the team coordinate better.
 
 Open-Source (Poly)
 
-Polyrepos are more natural for splitting open-source code from closed source code. Hybrid setups allow largely monorepo setups to open-source some components. Pure monorepo setups are incompatible with mixed open and closed source use-cases.
+Poly-repos are more natural for splitting open-source code from closed source code. Hybrid setups allow largely monorepo
+setups to open-source some components. Pure monorepo setups are incompatible with mixed open and closed source use-cases.

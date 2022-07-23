@@ -1,10 +1,10 @@
-If you can’t build a well-structured monolith, what makes you think you can build a well-structured set of Microservices?
-
+If you can’t build a well-structured monolith, what makes you think you can build a well-structured set of
+Microservices?
 
 Microservices Architecture
 Benefits:
     - Testing
-    - Maintainability [[Single monolith with well defined module boundaries works in theory]]
+    - Maintainability [[Single monolith with well-defined module boundaries works in theory]]
     - Deployment [[Facebook uses cookie-cutter deployment approach for continuous delivery of monolith.]]
 - PROS
     - Highly maintainable and testable
@@ -24,33 +24,34 @@ To break down monolith, your approach should have been modular from the beginnin
 modular, switching to microservices is not that difficult. But achieving this modularity is also tricky.
 
 What can drive us to microservice? What makes monolith complex to handle?
-1- Dealing with large team. Singular team that grows and communication becomes difficult. [40 devs working on same code base]
-2- Multi-Tenancy. In Single-Tenancy, each customer runs on their copy of the system, with their own copies of the processes.
-Most products, when moving from a traditional download model to a SAAS product offering, end up going with some flavor
-of multi-tenancy setup. The reason is efficiency. You can support more customers on fewer nodes, and fewer nodes means
-reduced cost. A single client setup might require lower-powered machines, but with more customers, you can provision
-higher-powered machines, which tend on the whole to provide more resources (CPU, Memory, IO) per $. A fully multi-tenant
-setup is more amenable to a microservice architecture than a single-tenant setup as the operational maintenance overhead
-doesn't scale linearly with customers. But they also allow you to scale individual parts of the system independently,
-allowing for a more cost-effective scaling too.
+1- Dealing with large team. Singular team that grows and communication becomes difficult. [40 devs working on same code
+   base]
+2- Multi-Tenancy. In Single-Tenancy, each customer runs on their copy of the system, with their own copies of the
+processes. Most products, when moving from a traditional download model to a SaaS product offering, end up going with
+some flavor of multi-tenancy setup. The reason is efficiency. You can support more customers on fewer nodes, and fewer
+nodes' means reduced cost. A single client setup might require lower-powered machines, but with more customers, you can
+provision higher-powered machines, which tend on the whole to provide more resources (CPU, Memory, IO) per $. A fully
+multi-tenant setup is more amenable to a microservice architecture than a single-tenant setup as the operational
+maintenance overhead doesn't scale linearly with customers. But they also allow you to scale individual parts of the
+system independently, allowing for a more cost-effective scaling too.
 3- Allowing different business functions to evolve and scale independently.
 4- Monolith becoming too big to modify and deploy.
 
 [
-Summarizing point 2
-If you have single-tenant system, whether it's a monolith or a microservice, you incur the same cost. Operational
-maintenance scales linearly with customers.
+    Summarizing point 2
+    If you have single-tenant system, whether it's a monolith or a microservice, you incur the same cost. Operational
+    maintenance scales linearly with customers.
 
-In case of multi-tenancy, scaling individual service/module is not possible if it's a monolith.
-Most products, when moving from a traditional download model to a SAAS product offering, end up going with some flavor
-of multi-tenancy setup. The reason is efficiency. You can support more customers on fewer nodes, and fewer nodes means
-reduced cost. A single client setup might require lower-powered machines, but with more customers, you can provision
-higher-powered machines, which tend on the whole to provide more resources (CPU, Memory, IO) per $. A fully multi-tenant
-setup is more amenable to a microservice architecture than a single-tenant setup as the operational maintenance overhead
-doesn't scale linearly with customers. But they also allow you to scale individual parts of the system independently,
-allowing for a more cost-effective scaling too.
+    In case of multi-tenancy, scaling individual service/module is not possible if it's a monolith.
+    Most products, when moving from a traditional download model to a SaaS product offering, end up going with some flavor
+    of multi-tenancy setup. The reason is efficiency. You can support more customers on fewer nodes, and fewer nodes' means
+    reduced cost. A single client setup might require lower-powered machines, but with more customers, you can provision
+    higher-powered machines, which tend on the whole to provide more resources (CPU, Memory, IO) per $. A fully multi-tenant
+    setup is more amenable to a microservice architecture than a single-tenant setup as the operational maintenance overhead
+    doesn't scale linearly with customers. But they also allow you to scale individual parts of the system independently,
+    allowing for a more cost-effective scaling too.
 
-Fix this upper block.
+    Fix this upper block.
 ]
 
 [[Facebook uses cookie-cutter deployment approach for continuous delivery of monolith.]]

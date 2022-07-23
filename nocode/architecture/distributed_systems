@@ -4,8 +4,6 @@ Distributed Systems: A collection of independent systems/computers which appears
     2- Computers fail independently.
     3- Computers do not share a global clock.
 
-Problem: Upload a large file of 10 GB to your server, read it, normalize the data and persist it into database.
-
 Distributed Transactions (How to handle failures in each)
 Synchronous
     - 2 Phase Commit
@@ -21,3 +19,5 @@ Fallacies:
 1- Zero network latency
 2- Network is reliable and secure
 3- Infinite Bandwidth
+
+Sample Problem: Upload a large file of 10 GB to your server, read it, normalize the data and persist it into database.
