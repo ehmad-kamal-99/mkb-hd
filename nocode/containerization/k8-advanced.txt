@@ -1,0 +1,210 @@
+What is K8's?
+A platform for managing containerized workloads & services.
+
+Olden Days
+
+        Virtualized Deployment                                  Container Deployment
+
+    _____________       _____________                       _____________       _____________
+    | app | app |       | app | app |                       | app | app |       | app | app |
+    -------------       -------------                       -------------       -------------
+    |    bin    |       |    bin    |                       |    bin    |       |    bin    |
+    -------------       -------------                       -------------       -------------
+    |     os    |       |     os    |                       |    cnt    |       |    cnt    |
+    -------------       -------------                       -------------       -------------
+    |     vm    |       |     vm    |                       ---------------------------------
+    -------------       -------------                       |       container runtime       | (docker, runC, containerd)
+    ---------------------------------                       ---------------------------------
+    |           hypervisor          |                       |               os              |
+    ---------------------------------                       ---------------------------------
+    |               os              |                       |           hardware            |
+    ---------------------------------                       ---------------------------------
+    |            hardware           |
+    ---------------------------------
+
+VD vs CD
+
+CD is like VD except they have relaxed isolation properties to share the Operating System among applications. This is
+why containers are considered lightweight. Both have their own file systems, share of CPU, memory, process space and
+more.
+
+Pros of Containers:
+
+- Easier to create container images over VM images.
+- CI/CD benefits: Provides for reliable and frequent container image build and deployment.
+- DevOps SoC: Create application container images at build/release time rather than deployment time, thereby decoupling
+applications from infrastructure.
+- Environmental consistency: Runs the same on a laptop as it does in the cloud.
+- Resource isolation: predictable application performance.
+- Resource utilization: high efficiency and density.
+
+Where does K8 fit in?
+
+Applications run inside containers, and we need to manage those containers ensuring that there is no downtime. For
+example, if a container goes down, another container needs to start. Wouldn't it be easier if this behavior was handled
+by a system? This is where K8 comes to the rescue. It takes care of scaling and fail-over for your application and
+provides deployment patterns like rolling update or canary.
+
+Benefits of K8's
+
+- Load Balancing: If traffic to a container is high, Kubernetes is able to load balance and distribute the network
+traffic so that the deployment is stable.
+- Storage Orchestration: Allows you to automatically mount a storage system of your choice.
+- Automated Rollouts and Rollbacks: Update current state to match desired state automatically.
+- Self Healing: Restarts failed containers, replaces and kills one's that aren't responding.
+- Secret and configuration management.
+
+Get Started?
+
+You deploy K8's, you get a cluster. Cluster consists of worker machines called nodes (min. one node required). Pods are
+hosted on these nodes. Control Plane manages the worker nodes and pods in a cluster. Control Plane components can run on
+any node but for safety and simplicity, do not run them on machines running user application containers.
+
+CONTROL PLANE COMPONENTS
+
+- kube-apiserver: Exposed k8's API's.
+- etcd: Consistent k/v store, used as k8's backing store for all cluster data.
+- kube-scheduler: Watches for newly created pods with no assigned nodes and selects a node for them (based on factors)
+- kube-controller-mgr: Runs controller processes. Controller is a control-loop that watches the shared state of a
+cluster through k8's api-server and makes changes to move from current state to desired state. Each controller is a
+separate process but to reduce complexity, are compiled into a single binary and run in a single process.
+    - Node Controller: Responsible for noticing and responding when node goes down.
+    - Job Controller: Watches for jobs that represent one-off tasks and then creates pods to complete them.
+    - Endpoint Controller: Populates the endpoint object (that is, join services and pods)
+    - Service Account & Token controllers: Create default accounts and API access tokens for new namespaces.
+- cloud-controller-manager: Links cluster to cloud provider API's. Does not exist for on-prem clusters.
+
+NODE COMPONENTS
+
+Node components run on every node, maintaining running pods and providing the Kubernetes runtime environment.
+
+kubelet: Agent that makes sure that containers are running in a pod (based on pod specs). They also communicate with
+container runtime via grpc to launch containers/pods.
+kube-proxy: A network proxy implementing k8's service concept. It maintains network rules that allow communication to
+your pods from inside or outside your cluster.
+container-runtime: Software responsible for running containers. (containerd, cri-o)
+
+KUBERNETES API
+
+Kubernetes API's: kubectl, kubeadm uses them to query or manipulate state of API objects i.e. pods, namespaces,
+configmaps
+
+KUBERNETES OBJECTS
+
+Kubernetes Objects: Every k8's object has 2 nested object fields, spec and state. Spec is defined when creating the
+object with certain characteristics (desired state). State describes current state, supplied and updated by k8's
+system and component.
+
+Kubernetes Object Management: The kubectl command-line tool supports several ways to create and manage Kubernetes
+objects.
+- Imperative: Operates directly on live objects in a cluster. `kubectl create deployment nginx --image nginx`
+- Imperative-Object: Specifies the operation (create, replace, etc.), optional flags and at least one file name.
+`kubectl create -f nginx.yaml`
+- Declarative: Does not define the operation taken on file. Automatically detected per object by kubectl.
+`kubectl apply -f configs/`
+
+Kubernetes Namespaces: A mechanism for isolation group of resources in a single cluster. Namespace-based scoping is
+applicable only for namespaced objects (e.g. Deployments, Services, etc) and not for cluster-wide objects (e.g.
+StorageClass, Nodes, PersistentVolumes, etc).
+
+Kubernetes Name & UID: Name is unique for a resource type in a namespace. UID's are unique across clusters.
+
+Kubernetes Labels: Apply non-unique tags i.e. release: dev, release: prod and use label-selector to identify group of
+objects.
+
+Kubernetes Finalizer: Namespaced keys that tell k8's to wait until certain conditions are met before fully deleting a
+resource marked for deletion. Finalizers alert controllers to clean up resources the deleted object owned.
+
+Kubernetes Owner: In Kubernetes, some objects are owners of other objects. For example, a ReplicaSet is the owner of a
+set of Pods. These owned objects are dependents of their owner.
+
+CLUSTER ARCHITECTURE
+
+NODES: Kubernetes runs your workload by placing containers into Pods to run on Nodes. There are two ways to add Nodes to
+API Server
+1- kubelet on a node self-registers itself to the control plane.
+2- You (or another human user) manually add a Node object.
+
+Node Status contains the following information
+1- Addresses: Holds host name, external and internal IP's.
+2- Condition: Describes status of running node i.e. Ready, Disk Pressure, Network Unavailable.
+3- Capacity and Allocatable: Describes resources available on node i.e. CPU, Memory, max pods to schedule.
+4- Info: Describes general information about the node, such as kernel version, Kubernetes version (kubelet and
+kube-proxy version), container runtime details, and which operating system the node uses. The kubelet gathers this
+information from the node and publishes it into the Kubernetes API.
+
+HEARTBEATS: Nodes send heartbeats to determine availability / failure etc for cluster.
+
+NODE CONTROLLER: Manages various aspects of nodes. Certain roles include:
+1- Assigning CIDR block to nodes.
+2- Keeping list of nodes up to date with cloud providers list of node i.e. if a node is unhealthy ask the CP if the node
+is available. If not, delete that node.
+3- Monitoring node's health. If node is not reachable, set Ready status to Unknown and trigger API-initiated eviction
+for all pods. By default, the node controller waits 5 minutes between marking the node as Unknown and submitting the
+first eviction request.
+
+CONTROLLERS
+
+Controller are control-loops watching the state of your system and then making or requesting changes where needed.
+What is control loop? A control loop is a non-terminating loop that regulates the state of the system i.e. a thermostat.
+
+Two ways controller can carry out actions
+
+1- Control via API Server: The Job controller is an example of a Kubernetes built-in controller. Built-in controllers
+manage state by interacting with the cluster API server. Job is a Kubernetes resource that runs a Pod, or perhaps
+several Pods, to carry out a task and then stop. Job controller sees a new task, asks the API Server to create/remove
+pod/s. Once the job is completed, it gets marked as finished.
+
+2- Direct Control: Some controllers need to make changes to things outside your cluster. For example, if you use a
+control loop to make sure there are enough Nodes in your cluster, then that controller needs something outside the
+current cluster to set up new Nodes when needed.
+
+CONTAINER RUNTIME INTERFACE
+
+A plugin interface that enables the kubelet to use wide variety of container runtimes (runC, containerd, docker) without
+recompiling cluster component
+
+                        -----------------------------------------------------------------
+                        | Node                                                          |
+                        |                                                               |
+                        |   -----------          uses          ---------------------    |
+                        |   | kubelet |     ------------->     | container runtime |    |
+                        |   -----------                        ---------------------    |
+                        |                   to launch pods/                             |
+                        |                      containers                               |
+                        |_______________________________________________________________|
+
+
+PODS
+
+Pods are the smallest deployable units of computing that you can create and manage in Kubernetes. A Pod (as in a pod of
+whales or pea pod) is a group of one or more containers, with shared storage and network resources, and a specification
+for how to run the containers. A Pod's contents are always co-located and co-scheduled, and run in a shared context. A
+Pod models an application-specific "logical host": it contains one or more application containers which are relatively
+tightly coupled. In non-cloud contexts, applications executed on the same physical or virtual machine are analogous to
+cloud applications executed on the same logical host.
+
+The shared context of a Pod is a set of Linux namespaces, cgroups, and potentially other facets of isolation - the same
+things that isolate a Docker container. Within a Pod's context, the individual applications may have further
+sub-isolations applied.
+In terms of Docker concepts, a Pod is similar to a group of Docker containers with shared namespaces and shared
+filesystem volumes.
+
+SERVICE
+
+An abstract way to expose an application running on a set of Pods as a network service. With Kubernetes, you don't need
+to modify your application to use an unfamiliar service discovery mechanism. Kubernetes gives Pods their own IP
+addresses and a single DNS name for a set of Pods, and can load-balance across them.
+
+MOTIVATION
+
+Kubernetes Pods are created and destroyed to match the desired state of your cluster. Pods are non-permanent resources.
+If you use a Deployment to run your app, it can create and destroy Pods dynamically. Each Pod gets its own IP address,
+however in a Deployment, the set of Pods running in one moment in time could be different from the set of Pods running
+that application a moment later.
+
+This leads to a problem: if some set of Pods (call them "backends") provides functionality to other Pods (call them
+"frontends") inside your cluster, how do the frontends find out and keep track of which IP address to connect to, so
+that the frontend can use the backend part of the workload?
+
+Enter Services.

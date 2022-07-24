@@ -30,6 +30,9 @@ func main() {
 	fmt.Println(maximumSubarray([]int{1}))
 	fmt.Println(maximumSubarray([]int{5, 4, -1, 7, 8}))
 	fmt.Println(maxSubArray([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4}))
+	fmt.Println(maximumSubarrayON([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4}))
+	fmt.Println(maximumSubarrayON([]int{1}))
+	fmt.Println(maximumSubarrayON([]int{5, 4, -1, 7, 8}))
 }
 
 func maximumSubarray(nums []int) int {
@@ -102,7 +105,22 @@ func maxSubArray(nums []int) int {
 }
 
 func maximumSubarrayON(nums []int) int {
-	return 0
+	maxSum := 0
+	currSum := 0
+
+	for i := 0; i < len(nums); i++ {
+		currSum += nums[i]
+
+		if currSum > maxSum {
+			maxSum = currSum
+		}
+
+		if currSum < 0 {
+			currSum = 0
+		}
+	}
+
+	return maxSum
 }
 
 // Challenge: If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
