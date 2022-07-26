@@ -208,3 +208,23 @@ This leads to a problem: if some set of Pods (call them "backends") provides fun
 that the frontend can use the backend part of the workload?
 
 Enter Services.
+
+ROLE & CLUSTERROLE
+
+An RBAC Role or ClusterRole contains rules that represent a set of permissions.
+
+A Role always sets permissions within a particular namespace; when you create a Role, you have to specify the namespace
+it belongs in.
+ClusterRole, by contrast, is a non-namespaced resource. The resources have different names (Role and ClusterRole)
+because a Kubernetes object always has to be either namespaced or not namespaced; it can't be both.
+
+A role binding grants the permissions defined in a role to a user or set of users. It holds a list of subjects (users,
+groups, or service accounts), and a reference to the role being granted.
+
+SERVICE ACCOUNT
+
+A service account provides an identity for processes that run in a Pod.
+When you (a human) access the cluster (for example, using kubectl), you are authenticated by the apiserver as a
+particular User Account (currently this is usually admin, unless your cluster administrator has customized your
+cluster). Processes in containers inside pods can also contact the apiserver. When they do, they are authenticated as a
+particular Service Account (for example, default).
