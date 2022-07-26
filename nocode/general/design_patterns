@@ -1,0 +1,34 @@
+Creational Design Patterns
+
+1- Factory: Simply define an interface and then provide concrete implementations of it. Then define a factory method
+that takes in client requirement and returns a concrete implementation of that interface. If client fails to provide a
+requirement, you can even return a default implementation.
+
+2- Builder: Useful when you need to create a large object i.e. a House object. Usually, you would either break down that
+class into subclasses but then modification to parent class would impact you child classes. Another approach would be to
+have a giant constructor. But 90% of the times, there will be certain parameters that wont get used leading to an ugly
+constructor. To tackle this, you move the object construction code to separate objects called builders. You can then
+call methods like buildWalls(), buildPool() etc to build your specific object type. Additionally, you can have a
+director class, that can simplify object creation like buildCastle(), buildBanglow() etc. too.
+
+3- Prototype: Helps create a copy of existing object. Normally, you would have to create a new object of that class and
+then copy all of the fields manually. But what happens if some of the fields are private? You also need to know the type
+of object/class which can be difficult to tell if you have an abstract implementation. Prototype pattern helps achieve
+this by having an interface with a single method, clone(). This method is then implemented by objects/classes from which
+we need to create clones hence the creation of clones is designated to the original class/object.
+
+4- Singleton: This pattern ensures that a class only has one and only one instance. Why would we need such a pattern?
+Consider a database object. To achieve this, we make the constructor private i.e. inaccessible from outside and define a
+static method that acts as a constructor (and also calls the constructor). This method then decides that if an instance
+already exists, return that, otherwise initialize one. Problem with this pattern mostly happens in test-cases.
+
+Structural Design Patterns
+
+1- Adapter: Allows objects with incompatible types to collaborate. The way it achieves that is by having an adapter
+class that transform/wraps one object to comply with target object.
+
+2- Bridge: Splits objects into dimensions using composition over inheritance. Consider a Shape() class having subclasses
+RedCircle(), BlueSquare() etc. Adding new color or shape can increase complexity i.e. YellowCircle(), YellowSquare() or
+RedHexagon(), BlueHexagon(). To break this chain, you can separate out Color() class and have it embedded into the
+Shape() class. This is also known as composition i.e. Shape() class is composed of Color() class (shape has-a color).
+Now creating new shapes becomes independent of color class and the dependency is broken.

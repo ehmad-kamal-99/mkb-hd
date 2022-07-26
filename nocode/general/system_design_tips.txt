@@ -1,0 +1,9 @@
+- System might be something they are working on or have already worked with.
+- Do a high-level design first before diving deep into components.
+- Start with functional / non-functional requirements.
+- Pick 3,4 scenarios that you want to satisfy/achieve.
+- Discuss different approaches, and their pros and cons, that can be used for solving those problems.
+- Iterate through scenarios one-by-one.
+- Pick a database. [sql, nosql, k/v store, graph]
+- Draw a sequence diagram. [consider sync vs async approaches]
+- Class Diagram of components. [utilize separation of concerns, inheritance, polymorphism]

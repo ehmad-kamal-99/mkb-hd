@@ -1,0 +1,56 @@
+Choice of database for your system impacts your non-functional requirement i.e. for low latency, we would prefer k/v
+stores, for unstructured data persistence and querying, no-sql database would be preferred. For constructing complex and
+ever-changing queries from client-end, a graph database would be preferred.
+
+                                            Major Types of Databases
+
+Caching Solutions: K/V databases where KEY can be the `where` clause of the query or `query parameters` of an API
+request while VALUE would be the expected response / result. [Example: Redis, battle-tested k/v store]
+
+File/Blob Storage: Suitable for applications dealing with photo/video content or any other large objects i.e.
+Netflix/Youtube. These aren't type of databases because you can't run queries on them but rather you mostly fetch
+objects based on id's. For such storages, it is recommended to use CDN so the file/content is geographically
+distributed in different locations and can be queried much quickly by the users. [Example: AWS s3]
+
+Text Search Engine: Suitable for applications where you want to the capability to perform application-wide text search
+i.e. in case of Netflix, you can search based on movie/show title, genre, cast and crew etc. Google Maps is another
+use-case which also supports fuzzy search. There is no guarantee of data loss so don't treat them as your primary source
+of truth. [Example: ElasticSearch, Solr, Algolia [built on Apache Lucene]] [FuzzySearch handles typos i.e. Racer/Raecr]
+
+Time Series: Suitable for storing metrics i.e. CPU usage, memory consumption, disk usage. Certain unique characteristics
+of these databases are 1- writes are append-only 2- reads are bulk, with range specified. [Example: Prometheus]
+
+Data Warehouse: Suitable for dumping large amount of organization-wide data for analytical purposes i.e. total orders,
+most revenue generating location, most sought out items etc. This data is queried mainly for offline reporting but are
+not suitable for transactional queries. [Example: Hadoop]
+
+Structured Data:
+
+- Yes
+    - RDBMS
+        - Information that can be easily modeled in form of rows (unique entries) & columns (unique attributes).
+        - For example User table with attr. like Name, Age, Gender, Address etc.
+        - Suitable when we require atomicity and transactional guarantees from database i.e. payment system.
+        - Also if data consistency is desired via isolation of transactions.
+        - Even if ACID properties are not required, we can still pick RDBMS.
+        - Example MySQL, MS SQL, Oracle SQL, PostgreSQL.
+
+- No
+    - Data with a lot of attributes plus wide variety of queries
+        - DocumentDB
+            - Building a catalog kind of system with information regarding all kinds of items available (ecommerce).
+            - Each object carries different attributes i.e. refrigerator vs t-shirt.
+            - If the purpose is to only list that data, then you can dump it into a json field of SQL database.
+            - If you want to query products based on those attributes, then doing so would be tricky in SQL DB.
+            - DocumentDB's are more optimal for these kinds of queries / operations.
+            - Example MongoDB, CouchDB, CockroachDB.
+
+    - Ever increasing data and finite set of queries
+        - ColumnarDB
+            - If the data isn't relational, and you do not have complex queries, you can still pick DocumentDB.
+            - Example of ever-increasing data, Uber.
+            - You have drivers/captains, continuously pinging their location, and you get X number of requests per day.
+            - With the increase of drivers, the data/records will directly increase too.
+            - Example of finite number of queries.
+            - One major & consistent query would be to track location pings of a driver.
+            - Query would have to find all location pings of a driver where driver ID == "xyz".

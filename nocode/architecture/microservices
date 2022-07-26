@@ -20,7 +20,9 @@ Benefits of Msvc:
 
 - CONS
 - Inter-service communication and partial failure (How is it done and how to tackle it)
-- Request spanning multiple services is difficult (How is it done???) [Could be synchronous vs asynchronous calls] [asynchronous better cause it removes dependency [consider two sync vs async calls [second gets blocked]], provides low-coupling, availability]
+- Request spanning multiple services is difficult (How is it done???) [Could be synchronous vs asynchronous calls]
+  [asynchronous better cause it removes dependency [consider two sync vs async calls [second gets blocked]],
+  provides low-coupling, availability]
 - Testing becomes difficult (How?)
 - Deployment becomes difficult because too many services (Really??)
 - When you use microservices you have to work on automated deployment, monitoring, dealing with failure,

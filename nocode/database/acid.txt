@@ -19,7 +19,7 @@ and committed that resulting in a row showing up in T1, which didn't exist durin
 
 - Lost Updates: Happens mostly when two concurrent update queries leads to inconsistent result. Assume T1 read quantity
 of product X while T2 also read quantity of product X (assume it to be 0). Then T1 set the quantity to 0 + 10 = 10 but
-T2 overwrote that, to set it to 0 + 5 = 5. After completion of both transactions, the value should have been 15 but we
+T2 overwrote that, to set it to 0 + 5 = 5. After completion of both transactions, the value should have been 15, but we
 ended up with 5 hence one of our updates was lost.
 
 Isolation Levels for Inflight Transactions

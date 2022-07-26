@@ -2,9 +2,10 @@
 2- Problems with Distributed Systems.
 3- Study Given, When, Then.
 4- Study DDD, pre-req to 1.
-5- Prepare a doc on Makefile automation, bash and shell scripting.
-6- Study ORM and what that object is.
-7- Study migrations in database i.e. schema updates, versions.
-8- Sum up your knowledge on Ansible Playbook + Prometheus + K8's Control Plane
-9- Study and implement gRPC.
-10- Sharded vs Replica Set.
+5- Study migrations in database i.e. schema updates, versions.
+6- Study and implement gRPC.
+7- Sharded vs Replica Set.
+8- Complete Design Patterns
+9-
+10-
+11-

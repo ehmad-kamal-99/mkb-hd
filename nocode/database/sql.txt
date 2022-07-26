@@ -11,4 +11,4 @@ Important Concepts of SQL Databases.
 - Stored Procedures and its advantages plus triggers.
 - Database Replica Sets vs Sharding.
 - Clustered vs Non-Clustered Index. Types of indexes and when to use which?
-- SQL vs PL/SQL. (Oracles Procedural Language to write a full program (loops, variables) to accomplish multiple cruds)
+- SQL vs PL/SQL. (Oracles Procedural Language to write a full program (loops, variables) to accomplish multiple CRUD's)
