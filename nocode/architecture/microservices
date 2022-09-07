@@ -1,16 +1,11 @@
 Microservices Architecture
 
-What is a service? A stand-alone, independently deployable software component.
+Definition
+What is a service? A stand-alone, independently deployable software component that implements some useful functionality.
 
-Benefits of Msvc:
-- Testing
-- Maintainability
-- Deployment
+Benefits / PROS of Msvc:
 - Small, frequent releases with less risk and faster delivery.
 - Avoids single point of failure.
-
-
-- PROS
 - Highly maintainable and testable
 - Loosely coupled
 - Independently deployable
@@ -19,12 +14,12 @@ Benefits of Msvc:
 
 
 - CONS
-- Inter-service communication and partial failure (How is it done and how to tackle it)
-- Request spanning multiple services is difficult (How is it done???) [Could be synchronous vs asynchronous calls]
+- Inter-service communication and partial failure. (REST vs gRPC vs async)
+- Request spanning multiple services is difficult. [Could be synchronous vs asynchronous calls]
   [asynchronous better cause it removes dependency [consider two sync vs async calls [second gets blocked]],
   provides low-coupling, availability]
-- Testing becomes difficult (How?)
-- Deployment becomes difficult because too many services (Really??)
+- Testing becomes difficult. (Consider e2e tests spanning multiple services)
+- Deployment becomes difficult because too many services. (500+ services)
 - When you use microservices you have to work on automated deployment, monitoring, dealing with failure,
 eventual consistency, and other factors that a distributed system introduces.
 
