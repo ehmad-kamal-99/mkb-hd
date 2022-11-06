@@ -1,0 +1,11 @@
+gRPC vs REST
+
+Speed: gRPC works with HTTP 2.0, transfers binary files as opposed to JSON/XML files in REST which is in text form and
+is larger and slower. (gRPC 1-0 REST)
+
+Flexibility: 10 clients, change in REST API (add / remove fields), you need to update the clients as well. in gRPC, you
+create proto file (a template on which generated code will be based) and you can easily recompile to accommodate change.
+gRPC proto file consists of methods and messages for your API Handlers. (gRPC 2-0 REST)
+
+Compatability: gRPC supports lots of popular languages but not some that might be unpopular but you can use gRPC gateway
+to create REST API based on your gRPC proto-buffer. (gRPC 2-1 REST)

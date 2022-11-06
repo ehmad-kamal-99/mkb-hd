@@ -5,7 +5,7 @@ Docker (Overlay FS)
 - Networking
 - Multi-Level Builds (Generate build, install tools i.e. golang, ca-certs then use that build using from in another stage/level leaving other stuff behind)
 
-Know that basic resources like
+Know the basic resources like
 - Nodes (virtual machine on which pods gets created)
 - Pods (contains application containers or other)
 - Persistent Volume (Volume where data is stored, is mapped to something physical i.e. s3, or nfs etc.)

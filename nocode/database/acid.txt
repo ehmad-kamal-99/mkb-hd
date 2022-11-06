@@ -14,7 +14,7 @@ result/value is a dirty read. T2 didn't commit the changes before T1 read it.
 outcome.
 
 - Phantom Read: Happens mostly in unbound query (no specific range specified). Assume T1 performed select query and then
-tried aggregate query on those rows but during the second query got executed, a new transaction T2 inserted a new row
+tried aggregate query on those rows but before the second query got executed, a new transaction T2 inserted a new row
 and committed that resulting in a row showing up in T1, which didn't exist during initial query.
 
 - Lost Updates: Happens mostly when two concurrent update queries leads to inconsistent result. Assume T1 read quantity

@@ -217,6 +217,18 @@ func main() {
 	tree.rChild.rChild.rChild = newBinaryTree(10)
 	tree.rChild.rChild.rChild.lChild = newBinaryTree(11)
 
+	tree2 := newBinaryTree(1)
+	tree2.lChild = newBinaryTree(2)
+	tree2.rChild = newBinaryTree(3)
+	tree2.lChild.lChild = newBinaryTree(4)
+	tree2.lChild.rChild = newBinaryTree(5)
+	//tree2.rChild.lChild = newBinaryTree(6)
+	tree2.rChild.rChild = newBinaryTree(8)
+	tree2.lChild.rChild.lChild = newBinaryTree(6)
+	tree2.lChild.rChild.rChild = newBinaryTree(7)
+	tree2.rChild.rChild.lChild = newBinaryTree(9)
+	//tree2.rChild.rChild.rChild.lChild = newBinaryTree(11)
+
 	// fmt.Println(heightRecursive(tree))
 
 	levelOrderTraversalQueue(tree)
@@ -226,5 +238,15 @@ func main() {
 	postOrderTraversalR(tree)
 	fmt.Println()
 	inOrderTraversalR(tree)
+	fmt.Println()
+
+	fmt.Println("--------")
+	fmt.Println()
+	levelOrderTraversalQueue(tree2)
+	preOrderTraversalR(tree2)
+	fmt.Println()
+	inOrderTraversalR(tree2)
+	fmt.Println()
+	postOrderTraversalR(tree2)
 	fmt.Println()
 }
